@@ -198,3 +198,75 @@ epUser = {
   }
 }
 epUser.greet("Welcome")
+
+// Interface with classes
+interface Named {
+  readonly u_person: string;
+}
+interface Greetable extends Named{ /* Here Named interface is Extended by Greetable Interface this is called as interface inheritance, The inheritance of interfaces is done by using "extends" keyword.*/
+  u_greet(wish: string, candy: number): void;
+}
+
+class Share implements Greetable{
+  u_person: string; 
+  constructor(n: string){
+    this.u_person = n;
+  }
+
+  u_greet(wish: string, candy: number) {
+    console.log(`${this.u_person} asking for the ${wish} and he expected ${candy} number of candies.`)
+  }
+}
+
+const pers = new Share("Astron martin");
+pers.u_greet("racing the car...!!", 222)
+console.log(pers)
+
+
+// Interface as a Function
+interface AddFun {
+  (a: number, b: number): number
+}
+let additionOfNumber: AddFun;
+additionOfNumber = (n1: number, n2: number) => {
+  n1 = 23;
+  n2 = 3330; 
+  return n1 + n2;
+} 
+const addresult = additionOfNumber(22, 33);
+console.log(`The addition of the two numbers is ${addresult}`)
+
+
+//Interfaces with Optional parameters and Optional properties
+interface Smartphones{
+  mobile_name: string;
+  mobile_price: number;
+  mobile_model_number?: string;
+  mobile_os: string; 
+}
+
+class SmartphoneShop implements Smartphones{
+  mobile_name: string;
+  mobile_price: number;
+  mobile_model_number?: string;
+  mobile_os: string; 
+  constructor(m_name: string, m_price: number, m_os: string, m_model?: string){
+    this.mobile_name = m_name;
+    this.mobile_price = m_price;
+    this.mobile_model_number = m_model;
+    this.mobile_os = m_os
+    if(m_model){
+      console.info(`${m_name}\n model number:  ${m_model}`)
+    }
+    else{
+      console.warn(`This smartphone doen't have any model number`)
+    }
+  }
+}
+
+
+const smarphoneToSell = new SmartphoneShop("OnePlus Nord 2 5G", 31000, "android 11", "nord2XL278198")
+console.log(SmartphoneShop);
+
+
+// Note: The Optional parameter defined by "?" this symbol 
